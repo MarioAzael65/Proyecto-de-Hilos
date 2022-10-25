@@ -4,7 +4,7 @@ deberemos crear una interfaz para poder buscar una pelicula<br>
 ##inicio
 las consultas se deberan buscar desde : 'http://clandestina-hds.com:8090/movies/title?search='<br>
 
-#En este pryecto confidado por la materia de programacion de sistemas, lo que se desea relaizar en un programa con interfaz grafica relacionada con hilos<br>
+En este pryecto confidado por la materia de programacion de sistemas, lo que se desea relaizar en un programa con interfaz grafica relacionada con hilos<br>
 
 Con lo que contamos con fecha de actulaizacion (18-10-2022) es con una pequeña interfaz grafica breve. Anexamos contemido.
 
