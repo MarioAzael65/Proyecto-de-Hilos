@@ -19,6 +19,7 @@ Se hace la codificacion donde se creraran las posiciones de las imagenes optenid
 ![image](https://user-images.githubusercontent.com/113540519/199898331-4314e793-5304-4321-8369-7163be2aef3c.png)
 
 En este punto se hace lo que es la busqueda de la imagen.
+![image](https://user-images.githubusercontent.com/113700163/199904147-35ea9f35-2fb1-4162-a53f-75512d69d3f1.png)
 
 ![image](https://user-images.githubusercontent.com/113700163/199903833-9519eaa1-ff1a-41fe-8376-6af8000510cb.png)
 
