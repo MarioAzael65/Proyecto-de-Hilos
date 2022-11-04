@@ -20,12 +20,12 @@ Se hace la codificacion donde se creraran las posiciones de las imagenes optenid
 
 En este punto se hace lo que es la busqueda de la imagen.
 
-![image](https://user-images.githubusercontent.com/113540519/199898512-bbbd6a80-0d7b-4f3a-9549-f46b8a51b7cc.png)
+![image](https://user-images.githubusercontent.com/113700163/199903833-9519eaa1-ff1a-41fe-8376-6af8000510cb.png)
 
 en este punto lo que se va agregando crear el index y el limit para sus posiciones, y el limite que debe imprimir en pantalla, si la busqueda entra en los caracteres, apareceran las imagennes dadas a la similitud de la pelicula, a lo cual se genera un Qlabel y un Qimage y se le agregan sus parametros de tamaños de pixel
 
 ![image](https://user-images.githubusercontent.com/113540519/199903636-a3ddd964-cb57-4e4e-b249-fc7b45aec332.png)
-![image](https://user-images.githubusercontent.com/113700163/199903833-9519eaa1-ff1a-41fe-8376-6af8000510cb.png)
+
 
 
 Se cayo el servidor :C
