@@ -24,6 +24,8 @@ En este punto se hace lo que es la busqueda de la imagen.
 ![image](https://user-images.githubusercontent.com/113700163/199903833-9519eaa1-ff1a-41fe-8376-6af8000510cb.png)
 <br>
 ![image](https://user-images.githubusercontent.com/113700163/199904694-98c846d2-80cc-4cef-9f69-589c5140820d.png)
+<br>
+![image](https://user-images.githubusercontent.com/113700163/199904874-2b0c2d7b-8518-4e04-9d39-01f9185f6984.png)
 
 en este punto lo que se va agregando crear el index y el limit para sus posiciones, y el limite que debe imprimir en pantalla, si la busqueda entra en los caracteres, apareceran las imagennes dadas a la similitud de la pelicula, a lo cual se genera un Qlabel y un Qimage y se le agregan sus parametros de tamaños de pixel
 
