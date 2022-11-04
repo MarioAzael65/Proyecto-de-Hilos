@@ -1,10 +1,9 @@
 # Importer bibliophiles
-from PyQt5.QtWidgets import QWidget, QApplication, QMainWindow, QGridLayout, QLineEdit, QPushButton, QLabel
+from PyQt5.QtWidgets import QWidget, QApplication, QMainWindow, QGridLayout, QLineEdit, QPushButton, QLabel, QDialog, QMessageBox, QTextEdit
 import requests
 from PyQt5.QtGui import QPixmap, QImage
+from PyQt5.QtCore import pyqtSignal, QTimer, Qt
 import requests
-import threading
-import functools
 
 
 # Subclass QMainWindow
@@ -46,7 +45,6 @@ class Main(QMainWindow):
         list = self.lnedt_Text.text()
         for words in list:
             words = list.split(",")
-        print(words)
         for i in words:
             self.get_movies(i)
 
@@ -57,24 +55,51 @@ class Main(QMainWindow):
         index = 0
         limit = 3
         for movie in movies_data['results']:
-            print("La pelicula de nombre: {} \n Tiene una URL de imagen: {}".format(movie['title'], movie["image"]))
             self.show_image(movie["image"])
-            threading.Thread
             index = index + 1
             if index == limit:
                 break
+
+    def show_info(self, title):
+        info = QTextEdit()
+        info.loadFromData(requests.get(title).content)
 
     def show_image(self, url_image):
         image = QImage()
         image.loadFromData(requests.get(url_image).content)
         pixel = QPixmap.fromImage(image).scaled(319, 474)
-        image_label = QLabel()
-        image_label.setPixmap(QPixmap(pixel))
-        image_label.show()
+        self.image_label = QLabelClickable(self)
+        self.image_label.setPixmap(QPixmap(pixel))
+        self.image_label.show()
+        self.image_label.setCursor(Qt.PointingHandCursor)
+        self.image_label.clicked.connect(self.Clic)
 
-        self.lyt_main2.addWidget(image_label)
+        self.lyt_main2.addWidget(self.image_label)
         self.container2.setLayout(self.lyt_main2)
         self.setCentralWidget(self.container2)
+
+    def Clic(self):
+        QMessageBox.information(self, "info",
+                                "Pelicula:")
+
+
+class QLabelClickable(QLabel):
+    clicked = pyqtSignal(str)
+
+    def _init_(self, parent=None):
+        super(QLabelClickable, self)._init_(parent)
+
+    def mousePressEvent(self, event):
+        self.ultimo = "Clic"
+
+    def mouseReleaseEvent(self, event):
+        if self.ultimo == "Clic":
+            QTimer.singleShot(QApplication.instance().doubleClickInterval(),
+                              self.performSingleClickAction)
+
+    def performSingleClickAction(self):
+        if self.ultimo == "Clic":
+            self.clicked.emit(self.ultimo)
 
 
 app = QApplication([])
