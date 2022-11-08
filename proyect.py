@@ -1,8 +1,6 @@
 # Importer bibliophiles
 from PyQt5.QtWidgets import QWidget, QApplication, QMainWindow, QGridLayout, QLineEdit, QPushButton, QLabel, QDialog, QMessageBox, QTextEdit
-import requests
 from PyQt5.QtGui import QPixmap, QImage
-from PyQt5.QtCore import pyqtSignal, QTimer, Qt
 import requests
 
 
@@ -10,6 +8,7 @@ import requests
 
 class Main(QMainWindow):
     def __init__(self):
+        self.information = []
         super().__init__()
         self.setWindowTitle("My_Browser")
         self.resize(740, 520)
@@ -35,7 +34,6 @@ class Main(QMainWindow):
 
         self.lyt_main2.addWidget(left_column, 0, 0)
         self.lyt_main2.addWidget(center_column, 0, 1)
-        self.lyt_main2.addWidget(right_column, 0, 2)
 
         self.container2.setLayout(self.lyt_main2)
         self.setCentralWidget(self.container2)
@@ -55,7 +53,7 @@ class Main(QMainWindow):
         index = 0
         limit = 3
         for movie in movies_data['results']:
-            self.show_image(movie["image"])
+            self.show_image(movie["image"], movie['plot'])
             index = index + 1
             if index == limit:
                 break
@@ -64,42 +62,20 @@ class Main(QMainWindow):
         info = QTextEdit()
         info.loadFromData(requests.get(title).content)
 
-    def show_image(self, url_image):
+    def show_image(self, url_image, info):
         image = QImage()
+        infor = QTextEdit("Resumen: "+info)
         image.loadFromData(requests.get(url_image).content)
-        pixel = QPixmap.fromImage(image).scaled(319, 474)
-        self.image_label = QLabelClickable(self)
+        pixel = QPixmap.fromImage(image).scaled(219, 349)
+
+        self.image_label = QLabel()
         self.image_label.setPixmap(QPixmap(pixel))
         self.image_label.show()
-        self.image_label.setCursor(Qt.PointingHandCursor)
-        self.image_label.clicked.connect(self.Clic)
 
         self.lyt_main2.addWidget(self.image_label)
+        self.lyt_main2.addWidget(infor)
         self.container2.setLayout(self.lyt_main2)
         self.setCentralWidget(self.container2)
-
-    def Clic(self):
-        QMessageBox.information(self, "info",
-                                "Pelicula:")
-
-
-class QLabelClickable(QLabel):
-    clicked = pyqtSignal(str)
-
-    def _init_(self, parent=None):
-        super(QLabelClickable, self)._init_(parent)
-
-    def mousePressEvent(self, event):
-        self.ultimo = "Clic"
-
-    def mouseReleaseEvent(self, event):
-        if self.ultimo == "Clic":
-            QTimer.singleShot(QApplication.instance().doubleClickInterval(),
-                              self.performSingleClickAction)
-
-    def performSingleClickAction(self):
-        if self.ultimo == "Clic":
-            self.clicked.emit(self.ultimo)
 
 
 app = QApplication([])
